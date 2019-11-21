@@ -174,7 +174,7 @@ def somefunc_dictvars_global_leak():
     user_has_permission = bool(permission)
     form = dict(another='object', perm=user_has_permission)
     comments = []
-    global leaked_var_global 
+    global leaked_var_global
     leaked_var_global = myapp
     for values in [d.values() for d in [user, form]]:
         comments.extend([v for v in values if isinstance(v, str)])
@@ -208,8 +208,7 @@ def main():
         if name.startswith('somefunc_'):
             print(f"\n{name}():")
             print(indent(pformat(globals()[name]()), ' '*4))
-    
+
 
 if __name__ == '__main__':
     main()
-

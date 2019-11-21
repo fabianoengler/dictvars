@@ -1,7 +1,7 @@
 
 import inspect
 
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 
 __all__ = ('dictvars', 'varsnamed', 'compact')
 
@@ -11,10 +11,10 @@ def _flatten(l):
 
 
 def dictvars(*variables):
-    '''Creates a dict with the variables passed as arguments.
+    """Creates a dict with the variables passed as arguments.
 
     The keys of the dict are the inferred names of the passed variables.
-    '''
+    """
 
     caller = inspect.stack()[1][0]
     nested_items = [caller.f_locals.items(), caller.f_globals.items()]
@@ -30,13 +30,13 @@ def dictvars(*variables):
 
 
 def varsnamed(*names):
-    '''Creates a dict from variables names passed as arguments.
+    """Creates a dict from variables names passed as arguments.
 
     The keys of the dict are the variable names.
 
     If a variable is not found with the name passed, a NameError exception
     is raised.
-    '''
+    """
 
     caller = inspect.stack()[1][0]
     vars = {}
@@ -51,4 +51,3 @@ def varsnamed(*names):
 
 
 compact = varsnamed
-
