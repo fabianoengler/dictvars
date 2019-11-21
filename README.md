@@ -1,9 +1,9 @@
-
+[![Build Status](https://travis-ci.com/fabianoengler/dictvars.svg?branch=master)](https://travis-ci.com/fabianoengler/dictvars)
+[![Coverage Status](https://coveralls.io/repos/github/fabianoengler/dictvars/badge.svg)](https://coveralls.io/github/fabianoengler/dictvars)
 
 # dictvars
 
 Create dicts from variables in scope.
-
 
 
 ## Why?
