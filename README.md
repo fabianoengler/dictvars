@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.com/fabianoengler/dictvars.svg?branch=master)](https://travis-ci.com/fabianoengler/dictvars)
 [![Coverage Status](https://coveralls.io/repos/github/fabianoengler/dictvars/badge.svg)](https://coveralls.io/github/fabianoengler/dictvars)
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/dictvars)](https://pypi.org/project/dictvars/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dictvars)](https://pypi.org/project/dictvars/)
+[![GitHub](https://img.shields.io/github/license/fabianoengler/dictvars?color=sucess)](https://github.com/fabianoengler/dictvars/blob/master/LICENSE.txt)
+
 
 # dictvars
 
