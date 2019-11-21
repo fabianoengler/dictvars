@@ -33,6 +33,12 @@ Alternatively, variable names can be passed as strings with `varsnamed`:
     return varsnamed('form', 'comments', 'myapp')
 ```
 
+## Install
+
+```
+pip install dictvars
+```
+
 ## Example
 
 Global variables can be passed to `varsdict` as well.
