@@ -150,6 +150,21 @@ def somefunc_dictvars_global():
     return dictvars(form, comments, myapp)
 
 
+def somefunc_dictvars_kwargs():
+    # pretend this is a controller code that makes sense
+    current_user = dict(some='very', complex_='expression')
+    permission = current_user.get('permission', False)
+    user_has_permission = bool(permission)
+    form = dict(another='object', perm=user_has_permission)
+    comments = []
+    for values in [d.values() for d in [current_user, form]]:
+        comments.extend([v for v in values if isinstance(v, str)])
+
+    # explicitly renaming a variable using keywords syntax 
+    # just like a regular dict
+    return dictvars(form, comments, user=current_user)
+
+
 def somefunc_dictvars_local_leak():
     # pretend this is a controller code that makes sense
     user = dict(some='very', complex_='expression')
@@ -184,6 +199,24 @@ def somefunc_dictvars_global_leak():
     return dictvars(form, comments, myapp)
 
 
+def somefunc_dictvars_kwargs_nonleak():
+    # pretend this is a controller code that makes sense
+    user = dict(some='very', complex_='expression')
+    permission = user.get('permission', False)
+    user_has_permission = bool(permission)
+    form = dict(another='object', perm=user_has_permission)
+    comments = []
+    global leaked_var_global
+    leaked_var_local = form
+    leaked_var_global = myapp
+    for values in [d.values() for d in [user, form]]:
+        comments.extend([v for v in values if isinstance(v, str)])
+
+    # if the vars are explicitly named (using kwargs syntax)
+    # any leaks can be supressed
+    return dictvars(comments, form=form, myapp=myapp)
+
+
 def somefunc_dictvars_local_python_optimization():
     some_num = 42
     some_str = 'hi'
@@ -206,7 +239,7 @@ def main():
     from textwrap import indent
     for name in globals():
         if name.startswith('somefunc_'):
-            print(f"\n{name}():")
+            print("\n{}():".format(name))
             print(indent(pformat(globals()[name]()), ' '*4))
 
 

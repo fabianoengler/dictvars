@@ -100,6 +100,65 @@ def test_dictvars_global_leak():
     assert rv['some_global_var'] == some_global_var
 
 
+def test_dictvars_local_kwargs():
+
+    from dictvars import dictvars
+
+    def somefunc():
+        a = 1
+        b = 2
+        c = 3
+        d = 4
+        e = 5
+        non_leak = b
+        return dictvars(a, e, renamed=b, d=d)
+
+    rv = somefunc()
+    assert set(rv.keys()) == {'a', 'e', 'renamed', 'd'}
+    assert rv['renamed'] == 2
+
+
+def test_dictvars_outer_kwargs():
+
+    from dictvars import dictvars
+
+    outer1 = 'outer variable 1'
+    outer2 = 'outer variable 2'
+    outer3 = 'outer variable 3'
+
+    def somefunc():
+        a = 1
+        b = 2
+        c = 3
+        d = 4
+        e = 5
+        non_leak = b
+        return dictvars(a, e, outer1, renamed=b, d=d, outer_ren=outer3)
+
+    rv = somefunc()
+    assert set(rv.keys()) == {'a', 'e', 'outer1', 'renamed', 'd', 'outer_ren'}
+    assert rv['outer1'] == outer1
+    assert rv['outer_ren'] == outer3
+
+
+def test_dictvars_global_kwargs():
+
+    from dictvars import dictvars
+
+    def somefunc():
+        a = 1
+        b = 2
+        c = 3
+        d = 4
+        e = 5
+        non_leak = b
+        return dictvars(a, e, global_renamed=some_global_var)
+
+    rv = somefunc()
+    assert set(rv.keys()) == {'a', 'e', 'global_renamed'}
+    assert rv['global_renamed'] == some_global_var
+
+
 def test_varsnamed_local():
 
     from dictvars import varsnamed
