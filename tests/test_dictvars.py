@@ -82,7 +82,7 @@ def test_dictvars_global_leak():
     from dictvars import dictvars
 
     outer = 'outer variable'
-    global leaked_global_var 
+    global leaked_global_var
     leaked_global_var = some_global_var
 
     def doublesum(a, b):
@@ -170,5 +170,3 @@ def test_varsnamed_global():
     assert rv['ds'] == 16
     assert rv['outer'] == outer
     assert rv['some_global_var'] == some_global_var
-
-

@@ -49,5 +49,3 @@ if __name__ == '__main__':
     pprint(somefunc_regular_python())
     pprint(somefunc_dictvars())
     pprint(somefunc_varsnamed())
-    
-
