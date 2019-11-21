@@ -2,7 +2,7 @@
 
 # dictvars
 
-Create dicts from variables in scope
+Create dicts from variables in scope.
 
 
 
@@ -141,7 +141,7 @@ Returns:
 ```
 
 Please note that no new value or object is leaked, only the name of
-an object that was already on the dict.
+an object that was already in the dict.
 
 I find that this is rare enough to not be a problem most of the time,
 additional variables returned usually can just be ignored.
