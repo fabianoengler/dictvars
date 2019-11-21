@@ -18,7 +18,18 @@ def somefunc2():
     b = '2'
     c = '3'
     no_leaks_now = b
-    return varsnamed('a', 'b')
+    return dictvars(a, b=b)
 
 
 print(somefunc2())
+
+
+def somefunc3():
+    a = '1'
+    b = '2'
+    c = '3'
+    no_leaks_now = b
+    return varsnamed('a', 'b')
+
+
+print(somefunc3())

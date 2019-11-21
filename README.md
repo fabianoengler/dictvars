@@ -120,6 +120,31 @@ Output is the same in all versions:
  'myapp': 'MyApp'}
 ```
 
+## Renaming variables
+
+The standard kwargs syntax of `dict` is also supported by `dictvars`.
+
+Suppose you have a variable `current_user` but you want to use only `user`
+on your dict:
+
+```python
+def somefunc_dictvars(current_user):
+    form = dict(some='very', complex_='expression')
+    comments = ['bla', 'bla']
+
+    return dictvars(form, comments, app=myapp, user=current_user)
+```
+
+Works as expected:
+
+```
+{'app': 'MyApp',
+ 'comments': ['bla', 'bla'],
+ 'form': {'some': 'very', 'complex_': 'expression'},
+ 'user': 'John Do'}
+```
+
+
 ## Limitations
 
 To create a dict from the passed variables, some "magic" is done to
@@ -158,9 +183,8 @@ additional variables returned usually can just be ignored.
 
 I'm not sure how to fix this yet. Open to suggestions.
 
-If this is a problem on a specific context, one can just swap
-`dictvars` for `varsnamed` and pass the variable names as strings
-instead:
+If this is a problem on a specific context, one can just pass the
+offending variable with a explicit name, just like a regular dict:
 
 ```python
 def somefunc():
@@ -168,7 +192,7 @@ def somefunc():
     b = '2'
     c = '3'
     no_leaks_now = b
-    return varsnamed('a', 'b')
+    return dictvars(a, b=b)
 
 print(somefunc())
 ```
@@ -177,4 +201,11 @@ Returns:
 ```
 {'a': '1',
  'b': '2'}
+```
+
+Yet another alternative in such cases would be to swap `dictvars` for
+`varsnamed`:
+
+```python
+    return varsnamed('a', 'b')
 ```

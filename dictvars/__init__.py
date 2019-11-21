@@ -10,10 +10,11 @@ def _flatten(l):
     return (item for sublist in l for item in sublist)
 
 
-def dictvars(*variables):
+def dictvars(*variables, **kw_variables):
     """Creates a dict with the variables passed as arguments.
 
-    The keys of the dict are the inferred names of the passed variables.
+    The keys of the dict are the inferred names of the variables passed
+    as arguments, plus all keys passed as keyword arguments.
     """
 
     caller = inspect.stack()[1][0]
@@ -25,6 +26,9 @@ def dictvars(*variables):
             if var is v:
                 vars[name] = var
                 break
+
+    for name, var in kw_variables.items():
+        vars[name] = var
 
     return vars
 
