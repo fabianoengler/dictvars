@@ -44,8 +44,12 @@ def somefunc_varsnamed():
     return varsnamed('form', 'comments', 'myapp')
 
 
-if __name__ == '__main__':
+def main():
     from pprint import pprint
     pprint(somefunc_regular_python())
     pprint(somefunc_dictvars())
     pprint(somefunc_varsnamed())
+
+
+if __name__ == '__main__':
+    main()
